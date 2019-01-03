@@ -1,0 +1,21 @@
+
+server:
+  port: 38001
+
+spring:
+  #   引入其他配置
+  #  profiles:
+  #    include: configProAddrs
+
+
+  application:
+    name: ConfigServer38001
+
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+
+#server:
+#  port: ${config-server.node1.instance-port}

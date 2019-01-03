@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fire-cloud-utils" />
+        <module name="configserver38001" />
+        <module name="registryserver37001" />
+        <module name="registryserver37002" />
       </profile>
     </annotationProcessing>
   </component>

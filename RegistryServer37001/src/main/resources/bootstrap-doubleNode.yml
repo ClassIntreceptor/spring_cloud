@@ -1,0 +1,20 @@
+
+
+spring:
+# 如果是在一台机器部署，需要修改hosts。
+  application:
+    name: RegistryServer37001
+# 表明自己的环境
+  profiles: doubleNode
+
+eureka:
+  client:
+# 表明自己是服务端
+    registerWithEureka: false
+    fetchRegistry: false
+# 单机版注册中心
+#    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+# 集群版，本项目采用集群版，两个节点
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
