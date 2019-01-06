@@ -1,0 +1,21 @@
+
+
+
+#  使用svn管理配置文件，一般都是使用git来管理配置文件。
+
+
+spring:
+  profiles: svn
+
+  cloud:
+    config:
+      server:
+        svn:
+          uri: xxxxx
+          username: xxxxxx
+          password: xxxxxx
+#         使用{application}占位符，如果加载在程序启动时，加载不到相应的服务，需加上单引号。
+#         search-paths: '{application}'
+          search-paths: {application}
+          default-label: trunk
+          basedir: /data #默认在系统临时目录下面，需要调整一下避免临时文件被系统自动清理

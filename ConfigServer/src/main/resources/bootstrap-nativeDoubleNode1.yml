@@ -1,0 +1,13 @@
+
+
+
+# 自己独立开发，不适用git作为配置文件的存储和版本管理。
+# 推荐生产环境也是用 native 方式；需要注意的是 若配置中心采用多节点，建议配置文件 放置在共享存储上。
+spring:
+  profiles:
+#   引入外部配置文件
+    include: native,localDoubleNode
+
+#
+server:
+  port: ${config-server.node1.instance-port}

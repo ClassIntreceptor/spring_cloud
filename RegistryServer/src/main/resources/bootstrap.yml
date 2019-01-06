@@ -1,0 +1,31 @@
+
+server:
+  port: 37001
+
+eureka:
+#  ip,在外部配置了配置文件，在此可省略
+  instance:
+    hostname: RegistryServer
+  client:
+# 表明自己是服务端
+    registerWithEureka: false
+    fetchRegistry: false
+# 单机版注册中心
+    serviceUrl:
+      defaultZone: http://127.0.0.1:37002/eureka/
+# 集群版，本项目采用集群版，两个节点
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:37002/eureka/
+spring:
+  profiles:
+    include: localDoubleNode
+  application:
+    name: RegistryServer
+  cloud:
+    config:
+#      外部配置文件中的服务名{application}
+      name: ${spring.application.name},PlatformEurekaConfig,PlatformCommons
+#      指向配置中心地址，从配置中心获取到上述的文件配置
+      uri: http://${config-server.node1.instance-ip}:${config-server.node1.instance-port}/
+
+

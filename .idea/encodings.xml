@@ -2,8 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/ConfigServer38001" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/RegistryServer37001" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/RegistryServer37002" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ConfigServer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RegistryServer" charset="UTF-8" />
   </component>
 </project>
