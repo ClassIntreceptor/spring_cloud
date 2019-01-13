@@ -1,24 +1,50 @@
 
+##server:
+##  port: 38001
+#
+#spring:
+##   引入其他配置，在启动jar包时指定
+##   java -jar $APP_NAME.jar --spring.config.location=./conf/,../localConfigs/ --spring.profiles.active=$PROFILE_ACTIVE > ../logs/$APP_NAME-$PROFILE_ACTIVE.out 2>& 1&
+#  profiles:
+##    后缀名
+#    include: localDoubleNode
+#  application:
+#    name: ConfigServer
+#
+## 此为注册中心的配置。设置自己为服务端
+##eureka:
+##  client:
+##    #由于注册中心的职责就是维护服务实例，所以他不需要去检索服务
+##    fetch-registry: false
+##    #由于该应用为注册中心，所以设置为false,代表不向注册中心注册自己
+##    register-with-eureka: false
+#
+## 默认启动时的端口号，如果后面分支环境有重写，则会覆盖
 #server:
-#  port: 38001
-
-spring:
-#   引入其他配置，在启动jar包时指定
-#   java -jar $APP_NAME.jar --spring.config.location=./conf/,../localConfigs/ --spring.profiles.active=$PROFILE_ACTIVE > ../logs/$APP_NAME-$PROFILE_ACTIVE.out 2>& 1&
-  profiles:
-#    后缀名
-    include: localDoubleNode
-  application:
-    name: ConfigServer
-
-# 此为注册中心的配置。设置自己为服务端
-#eureka:
-#  client:
-#    #由于注册中心的职责就是维护服务实例，所以他不需要去检索服务
-#    fetch-registry: false
-#    #由于该应用为注册中心，所以设置为false,代表不向注册中心注册自己
-#    register-with-eureka: false
-
-# 默认启动时的端口号，如果后面分支环境有重写，则会覆盖
+#  port: ${config-server.node1.instance-port}
 server:
-  port: ${config-server.node1.instance-port}
+  port: 8181
+spring:
+  application:
+    name: config-server
+  profile: default
+  cloud:
+    config:
+      server:
+        git:
+          #          .git文件
+          uri: https://github.com/ClassIntreceptor/spring_cloud.git
+          #          配置服务器（Config Server）默认情况下会对 Git 服务器的 SSL 证书进行验证。可以通过设置为 true 来禁止验证。默认值为 false；
+          skipSslValidation: true
+          username: 13966736115@163.com
+          password: xxxx
+          #         配置文件存储路径，git仓库地址下的相对地址，可以配置多个，用,分割。
+          #         使用{application}占位符，如果加载在程序启动时，加载不到相应的服务，需加上单引号。
+          #         search-paths: '{application}'
+          search-paths: _configs/PlatConfigServer/{application}
+          #         默认情况下，Config Server 克隆下来的文件保存在C:\Users\<当前用户>\AppData\Local\Temp目录下，我们可以通过此配置来修改存放位置；
+          basedir: _configs/temp
+          #         配置服务器等待获取 HTTP 连接的最长时间，单位：秒；
+          timeout: 600
+        #         当配置多个仓库时，用来指定优先级，数字越小，优先级越大
+        #         order:
