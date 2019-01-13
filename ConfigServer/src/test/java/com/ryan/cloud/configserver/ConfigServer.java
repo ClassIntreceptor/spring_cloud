@@ -1,4 +1,4 @@
-package com.ryan.cloud.configserver38001;
+package com.ryan.cloud.configserver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Configserver38001ApplicationTests {
+public class ConfigServer {
 
     @Test
     public void contextLoads() {
