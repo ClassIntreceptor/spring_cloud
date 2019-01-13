@@ -1,0 +1,12 @@
+
+
+spring:
+  cloud:
+    config:
+      profile: 'proDouble'
+      label: master
+#      双节点
+      uri:
+      - http://${config-server.node1.instance-ip}:${config-server.node1.instance-port}/
+      - http://${config-server.node2.instance-ip}:${config-server.node2.instance-port}/
+
