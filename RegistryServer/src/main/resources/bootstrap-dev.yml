@@ -1,11 +1,9 @@
 
-#配置单节点 主要使用在本地开发，测试使用
 
 #配置注册中心
 eureka:
-  # 表明自己是服务端
+# 表明自己是服务端
   client:
-    # 单节点注册中心
     serviceUrl:
       defaultZone: http://${registry-server.node1.instance-ip}:${registry-server.node1.instance-port}/eureka/
 

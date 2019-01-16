@@ -15,3 +15,10 @@ config-server:
     instance-ip: 127.0.0.1
     instance-port: 37002
 
+registry-server:
+  node1:
+    instance-ip: 127.0.0.1
+    instance-port: 38001
+  node2:
+    instance-ip: 127.0.0.1
+    instance-port: 38002

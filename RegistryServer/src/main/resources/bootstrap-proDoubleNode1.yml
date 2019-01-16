@@ -1,21 +1,21 @@
 
 
+#配置双节点 主要使用在部署环境
 spring:
-# 如果是在一台机器部署，需要修改hosts。
-  application:
-    name: RegistryServer37001
-# 表明自己的环境
   profiles:
-    include: LocalDoubleNode
+    include: pro
+  application:
+    name: RegistryServer
 
+#配置自身ip以及port
+server:
+  port: ${registry-server.node1.instance-port}
+
+#配置注册中心
 eureka:
+  # 表明自己是服务端
   client:
-# 表明自己是服务端
-    registerWithEureka: false
-    fetchRegistry: false
-# 单机版注册中心
-#    serviceUrl:
-#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-# 集群版，本项目采用集群版，两个节点
+    # 双节点注册中心
     serviceUrl:
-      defaultZone: http://${config-server.node2.instance-ip}:${config-server.node2.instance-port}/eureka/
+      defaultZone: http://${registry-server.node2.instance-ip}:${registry-server.node2.instance-port}/eureka/
+

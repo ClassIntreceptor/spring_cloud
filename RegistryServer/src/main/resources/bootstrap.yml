@@ -1,21 +1,6 @@
 
-server:
-  port: 37001
 
-eureka:
-#  ip,在外部配置了配置文件，在此可省略
-  instance:
-    hostname: RegistryServer
-  client:
-# 表明自己是服务端
-    registerWithEureka: false
-    fetchRegistry: false
-# 单机版注册中心
-    serviceUrl:
-      defaultZone: http://127.0.0.1:37002/eureka/
-# 集群版，本项目采用集群版，两个节点
-#    serviceUrl:
-#      defaultZone: http://127.0.0.1:37002/eureka/
+#设置配置中心
 spring:
   profiles:
     include: localDoubleNode
@@ -24,8 +9,31 @@ spring:
   cloud:
     config:
 #      外部配置文件中的服务名{application}
-      name: ${spring.application.name},PlatformEurekaConfig,PlatformCommons
+      name: ${spring.application.name},PlatRegistryServer
 #      指向配置中心地址，从配置中心获取到上述的文件配置
       uri: http://${config-server.node1.instance-ip}:${config-server.node1.instance-port}/
+
+#配置自身ip以及port
+server:
+  port: ${registry-server.node1.instance-port}
+
+#配置注册中心
+eureka:
+  instance:
+    ip-address: ${registry-server.node1.instance-ip}
+  server:
+#   启动自我保护机制，为了保护由于网络问题导致的微服务不可用，会将无效的服务进行保留，不会盲目注销微服务
+#   在本地开发的时候，应当关闭保护模式（默认为打开）
+    enable-self-preservation: false
+#   续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）
+    eviction-interval-timer-in-ms: 60000
+
+# 表明自己是服务端
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+# 单节点注册中心
+#    serviceUrl:
+#      defaultZone: http://${registry-server.node2.instance-port}:${registry-server.node2.instance-ip}/eureka/
 
 

@@ -9,9 +9,9 @@
     </parent>
 
     <groupId>com.ryan.cloud</groupId>
-    <artifactId>registryserver37001</artifactId>
+    <artifactId>registryserver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>registryserver37001</name>
+    <name>registryserver</name>
     <description>Demo project for Spring Boot</description>
 
 
@@ -20,6 +20,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
+        <!-- 用来实现应用的监控与管理，在此主要用于配合eureka的自我保护机制使用 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -31,6 +37,10 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

@@ -1,0 +1,9 @@
+
+
+server:
+  port: 37001
+
+eureka:
+  #  ip,在外部配置了配置文件，在此可省略
+  instance1:
+    ip-address: 127.0.0.1
