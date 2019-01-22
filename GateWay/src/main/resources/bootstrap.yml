@@ -1,0 +1,25 @@
+
+
+
+spring:
+  profiles:
+    include: localDoubleNode
+#    配置中心
+    config:
+      name: ${spring.application.name},PlatRegistryServer
+      uri: http://${config-server.node1.instance-ip}:${config-server.node1.instance-port}/
+
+    application:
+      name: GateWay
+
+#  路由配置
+  cloud:
+    gateway:
+      routes:
+      - id: after_route
+        uri: http://localhost:80/get
+        predicates:
+        - After=2017-01-20T17:42:47.789-07:00[America/Denver]
+
+server:
+  port: 8081
